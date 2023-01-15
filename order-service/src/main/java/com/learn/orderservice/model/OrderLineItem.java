@@ -1,15 +1,14 @@
 package com.learn.orderservice.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "tb_order_line_item")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderLineItem {
@@ -20,4 +19,5 @@ public class OrderLineItem {
     private String skuCode;
     private BigDecimal price;
     private Integer quantity;
+
 }
