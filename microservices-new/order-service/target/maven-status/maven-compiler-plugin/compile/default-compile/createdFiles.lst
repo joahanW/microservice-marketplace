@@ -1,9 +1,12 @@
-com\learn\orderservice\model\Order.class
 com\learn\orderservice\service\OrderService.class
+com\learn\orderservice\dto\InventoryResponse.class
 com\learn\orderservice\controller\OrderController.class
 com\learn\orderservice\model\OrderLineItem.class
 com\learn\orderservice\dto\OrderLineItemsDto.class
-com\learn\orderservice\dto\OrderResponse.class
 com\learn\orderservice\dto\OrderRequest.class
 com\learn\orderservice\repository\OrderRepository.class
+com\learn\orderservice\config\WebClientConfig.class
+com\learn\orderservice\model\Order.class
+com\learn\orderservice\dto\InventoryResponse$InventoryResponseBuilder.class
+com\learn\orderservice\dto\OrderResponse.class
 com\learn\orderservice\OrderServiceApplication.class
