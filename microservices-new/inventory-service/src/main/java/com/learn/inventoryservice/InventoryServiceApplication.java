@@ -12,7 +12,7 @@ public class InventoryServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(InventoryServiceApplication.class, args);
-		System.out.println("Server Inventory is Running....");
+		System.out.println("Server Inventory is Running in 8090....");
 	}
 
 	@Bean
