@@ -44,7 +44,6 @@ public class OrderService {
                 .map(OrderLineItem::getSkuCode)
                 .collect(Collectors.toList());
 
-
         // Call Inventory Service and place order if product is in stock
         // Method block() make the request Sync
         InventoryResponse[] inventoryResponseArray = webClient.get().uri("http://localhost:8090/api/inventory",
