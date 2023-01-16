@@ -12,7 +12,7 @@ public class OrderServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OrderServiceApplication.class, args);
-		System.out.println("Order Service Is Running....");
+		System.out.println("Order Service Is Running in 8089....");
 	}
 
 	@Bean

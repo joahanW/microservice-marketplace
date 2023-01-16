@@ -1,5 +1,6 @@
 package com.learn.orderservice.service;
 
+import com.learn.orderservice.dto.InventoryResponse;
 import com.learn.orderservice.dto.OrderLineItemsDto;
 import com.learn.orderservice.dto.OrderRequest;
 import com.learn.orderservice.dto.OrderResponse;
@@ -11,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -37,12 +39,26 @@ public class OrderService {
                 .collect(Collectors.toList());
         order.setOrderLineItems(orderLineItems);
 
+        // Get All SKU-CODE
+        List<String> skuCodes = order.getOrderLineItems().stream()
+                .map(OrderLineItem::getSkuCode)
+                .collect(Collectors.toList());
+
+
         // Call Inventory Service and place order if product is in stock
-        Boolean result = webClient.get().uri("http://localhost:8090/api/inventory")
+        // Method block() make the request Sync
+        InventoryResponse[] inventoryResponseArray = webClient.get().uri("http://localhost:8090/api/inventory",
+                        uriBuilder -> uriBuilder.queryParam("skuCode", skuCodes).build())
                 .retrieve()
-                .bodyToMono(Boolean.class)
+                .bodyToMono(InventoryResponse[].class)
                 .block();
-        if (result) {
+
+        // Validation in Array using allMatch if all value is TRUE,
+        // If one of the value FALSE the var return FALSE
+        boolean allProductsInStock = Arrays.stream(inventoryResponseArray)
+                .allMatch(InventoryResponse::isInStock);
+
+        if (allProductsInStock) {
             orderRepository.save(order);
         } else {
             throw new IllegalArgumentException("Product is not in stock, please try again!");
