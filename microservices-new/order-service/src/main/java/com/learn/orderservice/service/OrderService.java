@@ -23,7 +23,7 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
     private final ModelMapper modelMapper;
-    private final WebClient webClient;
+    private final WebClient.Builder webClientBuilder;
 
     public List<OrderResponse> getAll() {
         return orderRepository.findAll()
@@ -46,7 +46,8 @@ public class OrderService {
 
         // Call Inventory Service and place order if product is in stock
         // Method block() make the request Sync
-        InventoryResponse[] inventoryResponseArray = webClient.get().uri("http://localhost:8090/api/inventory",
+        InventoryResponse[] inventoryResponseArray = webClientBuilder.build().get()
+                .uri("http://inventory-service/api/inventory",
                         uriBuilder -> uriBuilder.queryParam("skuCode", skuCodes).build())
                 .retrieve()
                 .bodyToMono(InventoryResponse[].class)

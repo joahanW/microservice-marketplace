@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.learn.inventoryservice.InventoryServiceApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.875 s - in com.learn.inventoryservice.InventoryServiceApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.526 s - in com.learn.inventoryservice.InventoryServiceApplicationTests
